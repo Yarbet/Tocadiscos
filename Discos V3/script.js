@@ -1,3 +1,6 @@
+const searchAutorButton = document.getElementById("searchAutor");
+const searchAlbumButton = document.getElementById("searchAlbum");
+
 const findAlbumIndex = (arrayDiscos, element, type) => {
 	return arrayDiscos.findIndex(function(item, index) {
 		if (type === "autor") {
@@ -20,14 +23,6 @@ const handleModal = (elementSelector, modalSelector, type) => {
 	} else {
 		document.getElementById("Resultador").innerHTML = "El disco que buscaste no ha sido encontrado"
 	}
-}
-
-function buscarAutor() {
-	handleModal("txtNombreAutor", "#modalDisco", "autor");
-}
-
-function buscarDiscos() {
-	handleModal("txtNombreDiscos", "#modalDisco", "disco");
 }
 
 function crearObjDisco(nombreautor, nombredisco, portada, procedencia, aniolanzamiento, descrip, puntos, audiomp3) {
@@ -92,3 +87,13 @@ function rateStars(rate) {
 }
 
 document.getElementById("tablaautor").innerHTML = listaTablaAutor;
+
+searchAutorButton.addEventListener("click", () => {
+	handleModal("txtNombreAutor", "#modalDisco", "autor"); 
+});
+searchAlbumButton.addEventListener("click", () => {
+	handleModal("txtNombreDiscos", "#modalDisco", "disco"); 
+});
+
+
+
