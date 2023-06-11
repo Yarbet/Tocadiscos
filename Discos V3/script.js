@@ -1,15 +1,14 @@
 const searchAutorButton = document.getElementById("searchAutor");
 const searchAlbumButton = document.getElementById("searchAlbum");
+const inputAutor = document.getElementById("txtNombreAutor");
+const inputDisco = document.getElementById("txtNombreDiscos");
+const erorrMessage = document.getElementById("Resultador");
 
 const findAlbumIndex = (arrayDiscos, element, type) => {
+	let itemToUse;
 	return arrayDiscos.findIndex(function(item, index) {
-		if (type === "autor") {
-			if (item.autor.toUpperCase() === element) 
-			return true;
-		} else {
-			if (item.disco.toUpperCase() === element) 
-			return true;
-		}
+		type === "autor" ? itemToUse = item.autor : itemToUse = item.disco;
+		if (itemToUse.toUpperCase() === element) return true;
 	});
 }
 
@@ -20,8 +19,9 @@ const handleModal = (elementSelector, modalSelector, type) => {
 	if (encontrado >= 0) {
 		datosModal(encontrado);
 		$(modalSelector).modal('show');
+		erorrMessage.innerHTML = ''
 	} else {
-		document.getElementById("Resultador").innerHTML = "El disco que buscaste no ha sido encontrado"
+		erorrMessage.innerHTML = "El disco que buscaste no ha sido encontrado"
 	}
 }
 
@@ -95,5 +95,13 @@ searchAlbumButton.addEventListener("click", () => {
 	handleModal("txtNombreDiscos", "#modalDisco", "disco"); 
 });
 
+inputAutor.addEventListener("keyup", () => {
+	handleModal("txtNombreAutor", "#modalDisco", "autor"); 
+})
+
+inputDisco.addEventListener("keyup", () => {
+	console.log("hey")
+	handleModal("txtNombreDiscos", "#modalDisco", "disco"); 
+})
 
 
